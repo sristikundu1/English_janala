@@ -1,3 +1,33 @@
+// show section after login 
+const form = document.getElementById('myForm');
+
+form.addEventListener('submit', (e) => {
+
+    e.preventDefault()
+    const name = document.getElementById('name').value;
+    const password = document.getElementById('pass').value;
+
+    const convertedPass = parseInt(password)
+
+    console.log(name, typeof(password));
+    if(convertedPass === 123456){
+        alert("congratulations")
+        document.getElementById('nav-bar').style.display = 'block';
+        document.getElementById('learn').style.display = 'block';
+        document.getElementById('faq').style.display = 'block';
+    }
+
+    form.reset(); 
+})
+
+// hide section by click logout button 
+document.getElementById('logOut')
+.addEventListener('click', ()=>{
+     document.getElementById('nav-bar').style.removeProperty('display');
+        document.getElementById('learn').style.removeProperty('display');
+        document.getElementById('faq').style.removeProperty('display');
+})
+
 // by default a text show when no button clicked 
 function LoadNOLesson() {
   const wordCardContainer = document.getElementById("word-cards");
@@ -38,7 +68,7 @@ function displayLesson(lessons) {
   const lessonButtons = document.getElementById("lessons");
 
   for (let lesson of lessons) {
-    console.log(lesson.lessonName);
+    
     const lessonDiv = document.createElement("div");
     lessonDiv.innerHTML = `
         <button
@@ -129,15 +159,32 @@ const displayWord = (words) => {
                 <button onclick="LoadWordDetails('${word.id}')" class="btn">
                   <i class="fa-solid fa-circle-info bg-[#e8f4ff]"></i>
                 </button>
-                <button class="btn">
+                <button class="speaker-btn">
                   <i class="fa-solid fa-volume bg-[#e8f4ff]"></i>
                 </button>
               </div>
             </div>
     `;
     wordCardContainer.appendChild(wordCardDiv);
+
+//    Add click listener for speaker
+     const speakerBtn = wordCardDiv.querySelector(".speaker-btn");
+    speakerBtn.addEventListener("click", () => {
+      pronounceWord(word.word); // word is scoped correctly here
+    });
+
   });
+
 };
+
+function pronounceWord(word) {
+    if (!word) return; // Safety check
+    const utterance = new SpeechSynthesisUtterance(word);
+    utterance.lang = 'en-EN'; // English pronunciation
+    utterance.rate = 0.9;     // Speed (optional)
+    utterance.pitch = 1;      // Pitch (optional)
+    window.speechSynthesis.speak(utterance);
+}
 
 
 const LoadWordDetails = (wordID) =>{
@@ -159,9 +206,9 @@ const displayWordDetails = (word) =>{
             <h3
               class="font-poppins text-black text-4xl font-semibold leading-10 text-left"
             >
-              ${word.word}
+              ${word.word} (<i class="fa-solid fa-microphone"></i> ${word.pronunciation})
             </h3>
-            <p class="font-poppins text-lg font-semibold leading-10">Meaning</p>
+            <p class="font-poppins text-lg font-semibold leading-10 mt-4">Meaning</p>
             <p class="font-hind-siliguri text-lg font-medium"> ${(word.meaning !== null && word.meaning !== undefined && word.meaning !== "") 
                    ? word.meaning 
                    : "No meaning available for this word"}</p>

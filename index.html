@@ -43,7 +43,10 @@
     </style>
   </head>
   <body class="scroll-smooth">
-    <header class="border border-b-[rgba(198,189,189,1)] bg-[#ececec]">
+    <header
+      id="nav-bar"
+      class="border border-b-[rgba(198,189,189,1)] bg-[#ececec] hidden"
+    >
       <nav class="flex justify-between items-center w-11/12 mx-auto py-8">
         <div class="flex justify-center items-center">
           <h1 class="font-poppins font-semibold text-xl">English</h1>
@@ -72,6 +75,7 @@
           >
 
           <button
+            id="logOut"
             class="btn bg-[#ececec] border-2 text-[var(--color-primary)] border-[var(--color-primary)] rounded-md"
           >
             <i
@@ -100,10 +104,23 @@
             অন্য একটি Level এ
           </p>
 
-          <form action="" class="flex flex-col gap-5">
-            <input type="text" placeholder="Enter Your Name" class="input" />
-            <input type="password" placeholder="........." class="input" />
-            <button class="btn btn-primary w-fit">Get Started</button>
+          <form id="myForm" class="flex flex-col gap-5">
+            <input
+              id="name"
+              type="text"
+              placeholder="Enter Your Name"
+              class="input"
+            />
+            <input
+              id="pass"
+              value="123456"
+              type="password"
+              placeholder="........."
+              class="input"
+            />
+            <button id="started-btn" class="btn btn-primary w-fit">
+              Get Started
+            </button>
           </form>
         </div>
         <div>
@@ -112,7 +129,7 @@
       </section>
 
       <!-- learn  -->
-      <section id="learn" class="w-11/12 mx-auto py-8">
+      <section id="learn" class="w-11/12 mx-auto py-8 hidden">
         <h1 class="text-4xl font-bold leading-10 text-center mb-20">
           <span class="text-[#00BCFF]">Let's</span> Learn Vocabularies
         </h1>
@@ -133,7 +150,7 @@
       </dialog>
 
       <!-- faq  -->
-      <section id="faq" class="w-11/12 mx-auto py-8 font-poppins">
+      <section id="faq" class="w-11/12 mx-auto py-8 font-poppins hidden">
         <h1 class="text-4xl font-bold leading-10 text-center mb-20">
           <span class="text-[#00BCFF]">Frequently</span> Asked Questions
         </h1>
