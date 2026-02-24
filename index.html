@@ -47,7 +47,7 @@
   <body class="scroll-smooth">
     <header
       id="nav-bar"
-      class="border border-b-[rgba(198,189,189,1)] bg-[#ececec] hidden"
+      class="fixed top-0 left-0 w-full z-50 border border-b-[rgba(198,189,189,1)] bg-[#ececec] hidden"
     >
       <nav class="flex justify-between items-center w-11/12 mx-auto py-8">
         <div class="flex justify-center items-center">
@@ -91,7 +91,10 @@
 
     <main>
       <!-- banner  -->
-      <section class="w-11/12 mx-auto py-8 flex justify-between items-center">
+      <section
+        id="banner"
+        class="w-11/12 mx-auto py-8 flex justify-between items-center"
+      >
         <div class="w-2/3">
           <h1
             class="font-poppins text-black text-5xl font-bold leading-none text-left"
@@ -117,7 +120,7 @@
               id="pass"
               value="123456"
               type="password"
-              placeholder="........."
+              placeholder="Enter show code (123456)"
               class="input"
             />
             <button id="started-btn" class="btn btn-primary w-fit">

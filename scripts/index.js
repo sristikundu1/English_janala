@@ -8,7 +8,14 @@ form.addEventListener("submit", (e) => {
 
   const convertedPass = parseInt(password);
 
-  console.log(name, typeof password);
+  if(! convertedPass || !name){
+     // sweet alert
+   Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "Please enter Your name first!",
+});
+  }
   if (convertedPass === 123456) {
     // sweet alert
     Swal.fire({
@@ -19,6 +26,7 @@ form.addEventListener("submit", (e) => {
     document.getElementById("nav-bar").style.display = "block";
     document.getElementById("learn").style.display = "block";
     document.getElementById("faq").style.display = "block";
+    document.getElementById("banner").style.display = "none";
   }
 
   form.reset();
@@ -29,6 +37,7 @@ document.getElementById("logOut").addEventListener("click", () => {
   document.getElementById("nav-bar").style.removeProperty("display");
   document.getElementById("learn").style.removeProperty("display");
   document.getElementById("faq").style.removeProperty("display");
+  document.getElementById("banner").style.removeProperty("display");
 });
 
 // by default a text show when no button clicked
