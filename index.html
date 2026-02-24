@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=ADLaM+Display&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sora:wght@100..800&family=Tiro+Bangla:ital@0;1&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- font awsome  -->
+    <script
+      src="https://kit.fontawesome.com/e0b35deefc.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>English Janala</title>
+
+    <!-- favicon  -->
+    <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon" />
+
+    <!-- daysi ui  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+      @theme {
+        --color-primary: rgba(66, 42, 213, 1);
+        --font-poppins: "Poppins", sans-serif;
+        --font-hind-siliguri: "Hind Siliguri", sans-serif;
+        --font-tiro-bangla: "Tiro Bangla", serif;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="border border-b-[rgba(198,189,189,1)] bg-[#ececec]">
+      <nav class="flex justify-between items-center w-11/12 mx-auto py-8">
+        <div class="flex justify-center items-center">
+          <h1 class="font-poppins font-semibold text-xl">English</h1>
+          <img class="w-10 h-10" src="./assets/logo.png" alt="logo" />
+          <h1 class="font-tiro-bangla font-semibold text-xl">জানালা</h1>
+        </div>
+        <div>
+          <button
+            class="btn bg-[#ececec] border-2 text-[var(--color-primary)] border-[var(--color-primary)] rounded-md mr-4"
+          >
+            <i
+              class="fa-solid fa-circle-question text-[var(--color-primary)]"
+            ></i>
+            FAQ
+          </button>
+          <button
+            class="btn bg-[#ececec] border-2 text-[var(--color-primary)] border-[var(--color-primary)] rounded-md mr-4"
+          >
+            <i class="fa-solid fa-book-open text-[var(--color-primary)]"></i>
+            Learn
+          </button>
+          <button
+            class="btn bg-[#ececec] border-2 text-[var(--color-primary)] border-[var(--color-primary)] rounded-md"
+          >
+            <i
+              class="fa-solid fa-arrow-right-from-bracket text-[var(--color-primary)]"
+            ></i>
+            Logout
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="w-11/12 mx-auto py-8 flex justify-between items-center">
+        <div class="w-2/3">
+          <h1
+            class="font-poppins text-black text-5xl font-bold leading-none text-left"
+          >
+            <span class="text-[#00BCFF]">English</span> is Easy!!
+          </h1>
+          <p
+            class="font-hind-siliguri opacity-80 text-zinc-900 text-[24px] font-medium leading-[39px] text-left my-6"
+          >
+            আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা
+            আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে
+            অন্য একটি Level এ
+          </p>
+
+          <form action="" class="flex flex-col gap-5">
+            <input type="text" placeholder="Enter Your Name" class="input" />
+            <input type="password" placeholder="........." class="input" />
+            <button class="btn btn-primary w-fit">Get Started</button>
+          </form>
+        </div>
+        <div>
+          <img class="w-[734px]" src="./assets/hero-student.png" alt="banner" />
+        </div>
+      </section>
+    </main>
+
+    <footer></footer>
+  </body>
+</html>
