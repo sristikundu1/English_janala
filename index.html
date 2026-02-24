@@ -31,6 +31,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <style type="text/tailwindcss">
+      .active {
+        @apply bg-[var(--color-primary)] text-white;
+      }
       @theme {
         --color-primary: rgba(66, 42, 213, 1);
         --font-poppins: "Poppins", sans-serif;
@@ -39,7 +42,7 @@
       }
     </style>
   </head>
-  <body>
+  <body class="scroll-smooth">
     <header class="border border-b-[rgba(198,189,189,1)] bg-[#ececec]">
       <nav class="flex justify-between items-center w-11/12 mx-auto py-8">
         <div class="flex justify-center items-center">
@@ -48,20 +51,26 @@
           <h1 class="font-tiro-bangla font-semibold text-xl">জানালা</h1>
         </div>
         <div>
-          <button
-            class="btn bg-[#ececec] border-2 text-[var(--color-primary)] border-[var(--color-primary)] rounded-md mr-4"
+          <a href="#faq"
+            ><button
+              class="btn bg-[#ececec] border-2 text-[var(--color-primary)] border-[var(--color-primary)] rounded-md mr-4"
+            >
+              <i
+                class="fa-solid fa-circle-question text-[var(--color-primary)]"
+              ></i>
+              FAQ
+            </button></a
           >
-            <i
-              class="fa-solid fa-circle-question text-[var(--color-primary)]"
-            ></i>
-            FAQ
-          </button>
-          <button
-            class="btn bg-[#ececec] border-2 text-[var(--color-primary)] border-[var(--color-primary)] rounded-md mr-4"
+
+          <a href="#learn"
+            ><button
+              class="btn bg-[#ececec] border-2 text-[var(--color-primary)] border-[var(--color-primary)] rounded-md mr-4"
+            >
+              <i class="fa-solid fa-book-open text-[var(--color-primary)]"></i>
+              Learn
+            </button></a
           >
-            <i class="fa-solid fa-book-open text-[var(--color-primary)]"></i>
-            Learn
-          </button>
+
           <button
             class="btn bg-[#ececec] border-2 text-[var(--color-primary)] border-[var(--color-primary)] rounded-md"
           >
@@ -75,6 +84,7 @@
     </header>
 
     <main>
+      <!-- banner  -->
       <section class="w-11/12 mx-auto py-8 flex justify-between items-center">
         <div class="w-2/3">
           <h1
@@ -100,8 +110,143 @@
           <img class="w-[734px]" src="./assets/hero-student.png" alt="banner" />
         </div>
       </section>
+
+      <!-- learn  -->
+      <section id="learn" class="w-11/12 mx-auto py-8">
+        <h1 class="text-4xl font-bold leading-10 text-center mb-20">
+          <span class="text-[#00BCFF]">Let's</span> Learn Vocabularies
+        </h1>
+
+        <!-- lesson button  -->
+        <div id="lessons" class="flex justify-center items-center gap-4"></div>
+
+        <!-- lesson card  -->
+        <div class="bg-[rgba(248,248,248,1)] mt-10 p-4 rounded-xl">
+          <div id="word-cards" class="grid grid-cols-3 gap-4"></div>
+        </div>
+      </section>
+
+      <!-- Open the modal using ID.showModal() method -->
+
+      <dialog id="word_details" class="modal">
+        <div id="modal-container"></div>
+      </dialog>
+
+      <!-- faq  -->
+      <section id="faq" class="w-11/12 mx-auto py-8 font-poppins">
+        <h1 class="text-4xl font-bold leading-10 text-center mb-20">
+          <span class="text-[#00BCFF]">Frequently</span> Asked Questions
+        </h1>
+
+        <div
+          class="collapse collapse-plus bg-base-100 border border-base-300 mb-6"
+        >
+          <input type="radio" name="my-accordion-3" checked="checked" />
+          <div class="collapse-title font-semibold">
+            the difference between var, let, and const
+          </div>
+          <div class="collapse-content text-sm">
+            Click the "Sign Up" button in the top right corner and follow the
+            registration process.
+          </div>
+        </div>
+        <div
+          class="collapse collapse-plus bg-base-100 border border-base-300 mb-6"
+        >
+          <input type="radio" name="my-accordion-3" />
+          <div class="collapse-title font-semibold">
+            the difference between map(), forEach(), and filter()
+          </div>
+          <div class="collapse-content text-sm">
+            Click on "Forgot Password" on the login page and follow the
+            instructions sent to your email.
+          </div>
+        </div>
+        <div
+          class="collapse collapse-plus bg-base-100 border border-base-300 mb-6"
+        >
+          <input type="radio" name="my-accordion-3" />
+          <div class="collapse-title font-semibold">
+            explain arrow functions and how they are different from regular
+            functions
+          </div>
+          <div class="collapse-content text-sm">
+            Go to "My Account" settings and select "Edit Profile" to make
+            changes.
+          </div>
+        </div>
+        <div
+          class="collapse collapse-plus bg-base-100 border border-base-300 mb-6"
+        >
+          <input type="radio" name="my-accordion-3" />
+          <div class="collapse-title font-semibold">
+            how JavaScript Promises work
+          </div>
+          <div class="collapse-content text-sm">
+            Go to "My Account" settings and select "Edit Profile" to make
+            changes.
+          </div>
+        </div>
+        <div
+          class="collapse collapse-plus bg-base-100 border border-base-300 mb-6"
+        >
+          <input type="radio" name="my-accordion-3" />
+          <div class="collapse-title font-semibold">
+            how closures work in JavaScript
+          </div>
+          <div class="collapse-content text-sm">
+            Go to "My Account" settings and select "Edit Profile" to make
+            changes.
+          </div>
+        </div>
+      </section>
     </main>
 
-    <footer></footer>
+    <footer
+      class="bg-[rgba(255,255,255,1)] border-t-4 border-t-[rgba(255,235,235,1)]"
+    >
+      <footer
+        class="footer sm:footer-horizontal w-11/12 mx-auto items-center p-4"
+      >
+        <aside class="flex flex-col items-start gap-1">
+          <div class="flex justify-center items-center">
+            <h1 class="font-poppins font-semibold text-xl">English</h1>
+            <img class="w-10 h-10" src="./assets/logo.png" alt="logo" />
+            <h1 class="font-tiro-bangla font-semibold text-xl">জানালা</h1>
+          </div>
+          <p class="font-hind-siliguri text-xl font-medium leading-7 text-left">
+            ইংরেজি শিখুন সহজে
+          </p>
+          <p
+            class="font-hind-siliguri text-base font-normal leading-7 tracking-normal text-left"
+          >
+            Providing ED-Tech Applications since 2025
+          </p>
+        </aside>
+        <nav
+          class="flex flex-col gap-4 md:place-self-center md:justify-self-end"
+        >
+          <h1
+            class="font-hind-siliguri text-base font-normal leading-7 tracking-normal text-left"
+          >
+            Follow us
+          </h1>
+          <div>
+            <a>
+              <i class="fa-brands fa-facebook text-lg"></i>
+            </a>
+            <a>
+              <i class="fa-brands fa-youtube text-lg"></i>
+            </a>
+            <a>
+              <i class="fa-brands fa-instagram text-lg"></i>
+            </a>
+          </div>
+        </nav>
+      </footer>
+    </footer>
+
+    <!-- script file link  -->
+    <script src="./scripts/index.js"></script>
   </body>
 </html>
