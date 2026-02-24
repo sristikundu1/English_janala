@@ -1,34 +1,37 @@
-// show section after login 
-const form = document.getElementById('myForm');
+// show section after login
+const form = document.getElementById("myForm");
 
-form.addEventListener('submit', (e) => {
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = document.getElementById("name").value;
+  const password = document.getElementById("pass").value;
 
-    e.preventDefault()
-    const name = document.getElementById('name').value;
-    const password = document.getElementById('pass').value;
+  const convertedPass = parseInt(password);
 
-    const convertedPass = parseInt(password)
+  console.log(name, typeof password);
+  if (convertedPass === 123456) {
+    // sweet alert
+    Swal.fire({
+      title: "Congratulations!",
+      icon: "success",
+      draggable: true,
+    });
+    document.getElementById("nav-bar").style.display = "block";
+    document.getElementById("learn").style.display = "block";
+    document.getElementById("faq").style.display = "block";
+  }
 
-    console.log(name, typeof(password));
-    if(convertedPass === 123456){
-        alert("congratulations")
-        document.getElementById('nav-bar').style.display = 'block';
-        document.getElementById('learn').style.display = 'block';
-        document.getElementById('faq').style.display = 'block';
-    }
+  form.reset();
+});
 
-    form.reset(); 
-})
+// hide section by click logout button
+document.getElementById("logOut").addEventListener("click", () => {
+  document.getElementById("nav-bar").style.removeProperty("display");
+  document.getElementById("learn").style.removeProperty("display");
+  document.getElementById("faq").style.removeProperty("display");
+});
 
-// hide section by click logout button 
-document.getElementById('logOut')
-.addEventListener('click', ()=>{
-     document.getElementById('nav-bar').style.removeProperty('display');
-        document.getElementById('learn').style.removeProperty('display');
-        document.getElementById('faq').style.removeProperty('display');
-})
-
-// by default a text show when no button clicked 
+// by default a text show when no button clicked
 function LoadNOLesson() {
   const wordCardContainer = document.getElementById("word-cards");
   wordCardContainer.innerHTML = `
@@ -47,7 +50,7 @@ function LoadNOLesson() {
 `;
 }
 
-// remove previous active button 
+// remove previous active button
 function removeActiveClass() {
   const activeClass = document.getElementsByClassName("active");
 
@@ -68,7 +71,6 @@ function displayLesson(lessons) {
   const lessonButtons = document.getElementById("lessons");
 
   for (let lesson of lessons) {
-    
     const lessonDiv = document.createElement("div");
     lessonDiv.innerHTML = `
         <button
@@ -86,16 +88,16 @@ function displayLesson(lessons) {
   }
 }
 
-// fetch card data according to lesson id 
+// fetch card data according to lesson id
 function loadLessonCard(id) {
   const url = `https://openapi.programming-hero.com/api/level/${id}`;
 
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-        removeActiveClass();                  //remove previous active class
-          const clickedButton = document.getElementById(`btn-${id}`);
-        clickedButton.classList.add("active");              // add active class
+      removeActiveClass(); //remove previous active class
+      const clickedButton = document.getElementById(`btn-${id}`);
+      clickedButton.classList.add("active"); // add active class
 
       displayWord(data.data);
     });
@@ -149,9 +151,13 @@ const displayWord = (words) => {
                 <p
                   class="font-hind-siliguri text-center text-[rgba(24,24,27,1)] text-2xl font-semibold leading-10"
                 >
-                ${(word.meaning !== null && word.meaning !== undefined && word.meaning !== "") 
-                   ? word.meaning 
-                   : "No meaning available for this word"}
+                ${
+                  word.meaning !== null &&
+                  word.meaning !== undefined &&
+                  word.meaning !== ""
+                    ? word.meaning
+                    : "No meaning available for this word"
+                }
                 </p>
               </div>
 
@@ -167,39 +173,36 @@ const displayWord = (words) => {
     `;
     wordCardContainer.appendChild(wordCardDiv);
 
-//    Add click listener for speaker
-     const speakerBtn = wordCardDiv.querySelector(".speaker-btn");
+    //    Add click listener for speaker
+    const speakerBtn = wordCardDiv.querySelector(".speaker-btn");
     speakerBtn.addEventListener("click", () => {
       pronounceWord(word.word); // word is scoped correctly here
     });
-
   });
-
 };
 
 function pronounceWord(word) {
-    if (!word) return; // Safety check
-    const utterance = new SpeechSynthesisUtterance(word);
-    utterance.lang = 'en-EN'; // English pronunciation
-    utterance.rate = 0.9;     // Speed (optional)
-    utterance.pitch = 1;      // Pitch (optional)
-    window.speechSynthesis.speak(utterance);
+  if (!word) return; // Safety check
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English pronunciation
+  utterance.rate = 0.9; // Speed (optional)
+  utterance.pitch = 1; // Pitch (optional)
+  window.speechSynthesis.speak(utterance);
 }
 
-
-const LoadWordDetails = (wordID) =>{
-console.log(wordID);
+const LoadWordDetails = (wordID) => {
+  console.log(wordID);
 
   const url = ` https://openapi.programming-hero.com/api/word/${wordID}`;
 
   fetch(url)
-  .then(res => res.json())
-  .then(data => displayWordDetails(data.data))
-}
+    .then((res) => res.json())
+    .then((data) => displayWordDetails(data.data));
+};
 
-const displayWordDetails = (word) =>{
-    document.getElementById('word_details').showModal()
-  const modalContainer = document.getElementById('modal-container')
+const displayWordDetails = (word) => {
+  document.getElementById("word_details").showModal();
+  const modalContainer = document.getElementById("modal-container");
 
   modalContainer.innerHTML = `
    <div class="modal-box min-w-fit p-10 ">
@@ -209,17 +212,25 @@ const displayWordDetails = (word) =>{
               ${word.word} (<i class="fa-solid fa-microphone"></i> ${word.pronunciation})
             </h3>
             <p class="font-poppins text-lg font-semibold leading-10 mt-4">Meaning</p>
-            <p class="font-hind-siliguri text-lg font-medium"> ${(word.meaning !== null && word.meaning !== undefined && word.meaning !== "") 
-                   ? word.meaning 
-                   : "No meaning available for this word"}</p>
+            <p class="font-hind-siliguri text-lg font-medium"> ${
+              word.meaning !== null &&
+              word.meaning !== undefined &&
+              word.meaning !== ""
+                ? word.meaning
+                : "No meaning available for this word"
+            }</p>
 
             <p class="font-poppins text-lg font-semibold leading-10 mt-4">
               Example
             </p>
             <p class="font-poppins text-lg font-normal opacity-80 mb-4">
-               ${ (word.sentence !== null && word.sentence !== undefined && word.sentence !== "") 
-                   ? word.sentence 
-                   : "No grammar info"}
+               ${
+                 word.sentence !== null &&
+                 word.sentence !== undefined &&
+                 word.sentence !== ""
+                   ? word.sentence
+                   : "No grammar info"
+               }
             </p>
 
 
@@ -248,25 +259,25 @@ const displayWordDetails = (word) =>{
             </div>
           </div>
   
-  `
+  `;
 
-   // Generate synonyms buttons dynamically
-    const container = document.getElementById("synonymsContainer");
+  // Generate synonyms buttons dynamically
+  const container = document.getElementById("synonymsContainer");
 
-    // If there are synonyms
-    if (word.synonyms && word.synonyms.length > 0) {
-        word.synonyms.forEach(syn => {
-            const btn = document.createElement("button");
-            btn.className = "font-poppins text-base font-normal border border-[rgba(215,228,239,1)] rounded-md bg-[rgba(237,247,255,1)] py-2 px-5";
-            btn.textContent = syn; // Each button shows one synonym
-            container.appendChild(btn);
-        });
-    } else {
-        // If no synonyms
-        container.innerHTML = ``;
-    }
-
-}
+  // If there are synonyms
+  if (word.synonyms && word.synonyms.length > 0) {
+    word.synonyms.forEach((syn) => {
+      const btn = document.createElement("button");
+      btn.className =
+        "font-poppins text-base font-normal border border-[rgba(215,228,239,1)] rounded-md bg-[rgba(237,247,255,1)] py-2 px-5";
+      btn.textContent = syn; // Each button shows one synonym
+      container.appendChild(btn);
+    });
+  } else {
+    // If no synonyms
+    container.innerHTML = ``;
+  }
+};
 
 // by default all button remain active
 document.addEventListener("DOMContentLoaded", function () {
